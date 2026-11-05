@@ -1,0 +1,81 @@
+.main {
+  padding-bottom: var(--space-16);
+  min-height: 100vh;
+}
+
+.heroSkeleton {
+  width: 100%;
+  height: 480px;
+  border-radius: 0;
+}
+
+.section {
+  margin-top: var(--space-12);
+}
+
+.headingSkeleton {
+  margin-bottom: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.headingTitle {
+  width: 220px;
+  height: 32px;
+}
+
+.headingSubtitle {
+  width: 160px;
+  height: 18px;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-5);
+}
+
+@media (max-width: 1200px) {
+  .productGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .productGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+  }
+}
+
+.cardSkeleton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  background-color: var(--color-white);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.cardImage {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-sm);
+}
+
+.cardCategory {
+  width: 40%;
+  height: 14px;
+}
+
+.cardTitle {
+  width: 90%;
+  height: 18px;
+}
+
+.cardPrice {
+  width: 50%;
+  height: 20px;
+}

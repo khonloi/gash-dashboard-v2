@@ -1,0 +1,126 @@
+.paginationContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-top: 0;
+  padding-top: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.info {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  letter-spacing: var(--tracking-wide);
+}
+
+.highlight {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.paginationNav {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  background-color: var(--color-surface-subtle);
+  padding: var(--space-1);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border-default);
+}
+
+.pageNumbers {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.pageBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  height: 38px;
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  background-color: transparent;
+  color: var(--color-text-primary);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.pageBtn:focus-visible {
+  outline: var(--focus-ring-style);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.pageBtn:hover:not(:disabled):not(.active) {
+  background-color: var(--color-surface-hover);
+  color: var(--color-secondary);
+}
+
+.pageBtn:active:not(:disabled):not(.active) {
+  transform: scale(0.95);
+}
+
+.pageBtn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  color: var(--color-text-muted);
+}
+
+.navBtn {
+  color: var(--color-text-secondary);
+}
+
+.numberBtn {
+  font-variant-numeric: tabular-nums;
+}
+
+.active {
+  background-color: var(--color-secondary);
+  color: #ffffff;
+  border-color: var(--color-secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 38px;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  user-select: none;
+}
+
+@media (max-width: 640px) {
+  .paginationContainer {
+    margin-top: var(--space-8);
+    gap: var(--space-3);
+  }
+
+  .paginationNav {
+    gap: 2px;
+    padding: var(--space-1);
+  }
+
+  .pageBtn {
+    min-width: 32px;
+    height: 32px;
+    font-size: var(--text-xs);
+    padding: 0 var(--space-1);
+  }
+
+  .ellipsis {
+    width: 20px;
+    height: 32px;
+  }
+}

@@ -1,0 +1,30 @@
+.main {
+  min-height: 80vh;
+  padding: var(--space-8) 0;
+}
+
+.header {
+  margin-bottom: var(--space-8);
+}
+
+.header h1 {
+  margin-bottom: var(--space-2);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-6);
+}
+
+.card {
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.cardActions {
+  margin-top: auto;
+  padding-top: var(--space-4);
+}

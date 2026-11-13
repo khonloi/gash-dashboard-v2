@@ -59,4 +59,20 @@ describe('apiClient demo mode integration', () => {
       (process.env as Record<string, string | undefined>).NODE_ENV = originalEnv;
     }
   });
+
+  it('respects explicit NEXT_PUBLIC_DEMO_MODE=false (with or without whitespace) in development when localStorage is unset', () => {
+    const originalNodeEnv = process.env.NODE_ENV;
+    try {
+      (process.env as Record<string, string | undefined>).NODE_ENV = 'development';
+      localStorage.removeItem('gash-dashboard-demo-mode');
+
+      process.env.NEXT_PUBLIC_DEMO_MODE = 'false';
+      expect(isDemoModeActive()).toBe(false);
+
+      process.env.NEXT_PUBLIC_DEMO_MODE = 'false ';
+      expect(isDemoModeActive()).toBe(false);
+    } finally {
+      (process.env as Record<string, string | undefined>).NODE_ENV = originalNodeEnv;
+    }
+  });
 });

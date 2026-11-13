@@ -6,7 +6,6 @@ import { usePathname, useRouter } from 'next/navigation';
 import { Menu, LogOut, ChevronRight } from 'lucide-react';
 import { useAuthStore } from '@/store/useAuthStore';
 import { useLogoutMutation } from '@/hooks/useAuth';
-import { DemoModeBanner } from '@/components/common';
 import styles from './Topbar.module.css';
 
 export interface TopbarProps {
@@ -98,9 +97,6 @@ export function Topbar({ onOpenMobileSidebar }: TopbarProps) {
       </div>
 
       <div className={styles.rightSection}>
-        {/* Backend health / demo mode control badge */}
-        <DemoModeBanner inline />
-
         {/* User Card */}
         <div className={styles.userCard}>
           <div className={styles.avatar} aria-hidden="true">

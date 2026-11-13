@@ -10,6 +10,7 @@ import {
   ShoppingCart,
   Users,
   Settings,
+  Headphones,
   ChevronLeft,
   ChevronRight,
   X,
@@ -54,6 +55,11 @@ const NAV_ITEMS: NavItem[] = [
     href: '/customers',
     icon: Users,
     adminOnly: true,
+  },
+  {
+    label: 'Live Support',
+    href: '/support',
+    icon: Headphones,
   },
   {
     label: 'Settings',

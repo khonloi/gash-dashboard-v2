@@ -44,6 +44,13 @@ const STATUS_COLOR_MAP: Record<string, StatusColor> = {
   draft: 'amber',
   archived: 'gray',
   inactive: 'gray',
+
+  // Support Chat Statuses
+  bot_active: 'purple',
+  queued: 'amber',
+  assigned: 'blue',
+  resolved: 'emerald',
+  closed: 'gray',
 };
 
 export function StatusBadge({ status, label, color, showDot = true, className }: StatusBadgeProps) {

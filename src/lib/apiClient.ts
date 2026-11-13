@@ -24,11 +24,17 @@ export function setTokenRefreshHandler(handler: TokenRefreshHandler | null): voi
 /**
  * Determine whether Demo Mode is active.
  * Checked via:
- * 1. Environment variable NEXT_PUBLIC_DEMO_MODE=true
- * 2. Client-side localStorage override 'jocksport-demo-mode' (only allowed in non-production environments)
+ * 1. Environment variable NEXT_PUBLIC_DEMO_MODE / DEMO_MODE ('true' forces on)
+ * 2. Client-side localStorage override 'gash-dashboard-demo-mode' (only allowed in non-production environments)
+ * 3. Environment variable explicitly set to 'false' disables demo mode in development (SSR & client)
+ * 4. Otherwise defaults to true in development when unset
  */
 export function isDemoModeActive(): boolean {
-  if (process.env.NEXT_PUBLIC_DEMO_MODE === 'true' || process.env.DEMO_MODE === 'true') {
+  const envDemo = (process.env.NEXT_PUBLIC_DEMO_MODE ?? process.env.DEMO_MODE ?? '')
+    .trim()
+    .toLowerCase();
+
+  if (envDemo === 'true') {
     return true;
   }
   // In production, strictly prevent client-side localStorage overrides
@@ -45,7 +51,10 @@ export function isDemoModeActive(): boolean {
       // Ignore browser storage access errors
     }
   }
-  // In development, default to active demo mode if backend is not explicitly targeted
+  if (envDemo === 'false') {
+    return false;
+  }
+  // In development, default to active demo mode only if not explicitly configured otherwise
   return process.env.NODE_ENV === 'development';
 }
 

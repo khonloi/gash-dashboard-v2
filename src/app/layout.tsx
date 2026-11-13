@@ -4,7 +4,6 @@ import './globals.css';
 import ReactQueryProvider from '@/components/providers/ReactQueryProvider';
 import { ToastContainer } from '@/components/ui/Toast/ToastContainer';
 import { WebVitals } from '@/components/analytics/WebVitals';
-import { DemoModeBanner } from '@/components/common';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -71,7 +70,6 @@ export default function RootLayout({
         <ReactQueryProvider>
           {children}
           <ToastContainer />
-          <DemoModeBanner hideOnDashboard />
         </ReactQueryProvider>
       </body>
     </html>

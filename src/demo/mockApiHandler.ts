@@ -792,6 +792,133 @@ export async function handleMockRequest<T>(
     } as T;
   }
 
+  // ==========================================
+  // 6. CHAT OPERATIONS
+  // ==========================================
+  if (cleanPath.startsWith('/chat')) {
+    const demoConvId = 'conv_desk_1';
+    const demoConversations = [
+      {
+        _id: demoConvId,
+        user: {
+          _id: 'usr_cust_1',
+          firstName: 'Sarah',
+          lastName: 'Connor',
+          email: 'sarah.c@example.com',
+        },
+        mode: 'support',
+        status: 'queued',
+        subject: 'Order delivery tracking',
+        unreadCountCustomer: 0,
+        unreadCountAgent: 1,
+        lastMessagePreview: 'Could you please check where my package is?',
+        lastMessageAt: new Date(Date.now() - 120000).toISOString(),
+        createdAt: new Date(Date.now() - 3600000).toISOString(),
+        updatedAt: new Date().toISOString(),
+      },
+    ];
+
+    const demoMessages = [
+      {
+        _id: 'msg_desk_1',
+        conversation: demoConvId,
+        senderType: 'customer',
+        senderUser: {
+          _id: 'usr_cust_1',
+          firstName: 'Sarah',
+          lastName: 'Connor',
+        },
+        content: 'Could you please check where my package is?',
+        contextCards: [
+          {
+            cardType: 'order',
+            order: {
+              _id: 'ord_1',
+              orderNumber: 'JCK-2026-8812',
+              status: 'shipped',
+              paymentStatus: 'paid',
+              shippingMethod: 'standard',
+              total: 249.99,
+              createdAt: new Date().toISOString(),
+            },
+          },
+        ],
+        isRead: false,
+        createdAt: new Date(Date.now() - 120000).toISOString(),
+      },
+    ];
+
+    if (method === 'GET' && cleanPath === '/chat/conversations') {
+      return {
+        status: 'success',
+        data: { conversations: demoConversations },
+        pagination: { page: 1, limit: 20, totalPages: 1, totalResults: 1 },
+      } as T;
+    }
+
+    if (method === 'GET' && cleanPath.includes('/messages')) {
+      return {
+        status: 'success',
+        data: { messages: demoMessages },
+        pagination: { page: 1, limit: 50, totalPages: 1, totalResults: demoMessages.length },
+      } as T;
+    }
+
+    if (method === 'POST' && cleanPath.includes('/messages')) {
+      const payload = body as Record<string, unknown>;
+      const newMsg = {
+        _id: `msg_agent_${Date.now()}`,
+        conversation: demoConvId,
+        senderType: 'agent',
+        content: String(payload.content || ''),
+        contextCards: [],
+        isRead: true,
+        createdAt: new Date().toISOString(),
+      };
+      return {
+        status: 'success',
+        data: { message: newMsg },
+      } as T;
+    }
+
+    if (method === 'PATCH' && cleanPath.includes('/assign')) {
+      return {
+        status: 'success',
+        data: {
+          conversation: {
+            ...demoConversations[0],
+            status: 'assigned',
+            assignedAgent: {
+              _id: currentUser._id,
+              firstName: currentUser.firstName,
+              lastName: currentUser.lastName,
+            },
+          },
+        },
+      } as T;
+    }
+
+    if (method === 'PATCH' && cleanPath.includes('/status')) {
+      const payload = body as Record<string, unknown>;
+      return {
+        status: 'success',
+        data: {
+          conversation: {
+            ...demoConversations[0],
+            status: (payload.status as string) || 'resolved',
+          },
+        },
+      } as T;
+    }
+
+    if (method === 'PATCH' && cleanPath.includes('/read')) {
+      return {
+        status: 'success',
+        data: {},
+      } as T;
+    }
+  }
+
   // Fallback for unhandled demo routes: return generic success envelope
   return {
     status: 'success',

@@ -18,7 +18,10 @@ function getApiOrigin(): string {
 }
 
 const apiOrigin = getApiOrigin();
-const connectSrc = isProd ? `'self' ${apiOrigin}`.trim() : "'self' http://localhost:* https://*";
+const wsOrigin = apiOrigin ? apiOrigin.replace(/^http/, 'ws') : '';
+const connectSrc = isProd
+  ? `'self' ${apiOrigin} ${wsOrigin}`.trim()
+  : "'self' http://localhost:* http://127.0.0.1:* ws://localhost:* ws://127.0.0.1:* https://* wss://*";
 
 const imgSrc = [
   "'self'",

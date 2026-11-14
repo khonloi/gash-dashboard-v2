@@ -78,7 +78,7 @@
 .description {
   font-size: var(--text-xs);
   color: var(--color-text-muted);
-  margin-top: 2px;
+  margin-top: var(--space-0-5);
 }
 
 .right {

@@ -2,11 +2,11 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-1);
-  padding: 2px 8px;
+  padding: var(--space-0-5) var(--space-2);
   border-radius: var(--radius-full);
-  font-size: 11px;
+  font-size: var(--text-2xs);
   font-weight: var(--font-weight-semibold);
-  letter-spacing: 0.03em;
+  letter-spacing: var(--tracking-wide);
   text-transform: capitalize;
   white-space: nowrap;
   width: fit-content;
@@ -17,6 +17,7 @@
   height: 6px;
   border-radius: var(--radius-full);
   background-color: currentColor;
+  flex-shrink: 0;
 }
 
 /* Color Variants */
@@ -63,7 +64,7 @@
 }
 
 .navy {
-  background-color: rgba(12, 28, 48, 0.08);
+  background-color: var(--color-secondary-subtle);
   color: var(--color-secondary);
   border: 1px solid rgba(12, 28, 48, 0.2);
 }

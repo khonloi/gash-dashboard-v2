@@ -11,7 +11,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  font-weight: 800;
+  font-weight: var(--font-weight-bold);
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-wider);
   color: var(--color-secondary);
@@ -19,7 +19,7 @@
 }
 
 .fallbackBrand {
-  font-weight: 800;
+  font-weight: var(--font-weight-bold);
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-widest);
   color: var(--color-secondary);

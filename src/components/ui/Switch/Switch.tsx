@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import clsx from 'clsx';
+import { cn } from '@/lib/cn';
 import styles from './Switch.module.css';
 
 export interface SwitchProps {
@@ -42,7 +42,7 @@ export function Switch({
   };
 
   return (
-    <label htmlFor={id} className={clsx(styles.container, disabled && styles.disabled, className)}>
+    <label htmlFor={id} className={cn(styles.container, disabled && styles.disabled, className)}>
       <button
         type="button"
         role="switch"
@@ -53,7 +53,7 @@ export function Switch({
         disabled={disabled}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
-        className={clsx(styles.switch, checked && styles.checked)}
+        className={cn(styles.switch, checked && styles.checked)}
       >
         <span className={styles.thumb} aria-hidden="true" />
       </button>

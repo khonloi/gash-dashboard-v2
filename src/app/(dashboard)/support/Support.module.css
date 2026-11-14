@@ -35,16 +35,16 @@
 
 .filterTabs {
   display: flex;
-  gap: 2px;
+  gap: var(--space-1);
   background: var(--color-bg-page);
-  padding: 3px;
+  padding: var(--space-1);
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border-subtle);
 }
 
 .filterTab {
   flex: 1;
-  padding: 6px 8px;
+  padding: var(--space-1-5) var(--space-2);
   border-radius: var(--radius-sm);
   font-size: var(--text-xs);
   font-weight: var(--font-weight-medium);
@@ -129,7 +129,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-2);
-  margin-bottom: 2px;
+  margin-bottom: var(--space-0-5);
 }
 
 .customerName {
@@ -204,7 +204,7 @@
 }
 
 .chatCustomerName {
-  margin: 0 0 2px;
+  margin: 0 0 var(--space-0-5);
   font-size: var(--text-base);
   font-weight: var(--font-weight-bold);
   color: var(--color-text-primary);

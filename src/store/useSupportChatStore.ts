@@ -33,9 +33,9 @@ function isPopulatedPerson(
 ): val is { _id: string; firstName: string; lastName: string; email?: string; avatar?: string } {
   return Boolean(
     val &&
-      typeof val === 'object' &&
-      'firstName' in val &&
-      typeof (val as { firstName?: unknown }).firstName === 'string'
+    typeof val === 'object' &&
+    'firstName' in val &&
+    typeof (val as { firstName?: unknown }).firstName === 'string'
   );
 }
 

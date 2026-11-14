@@ -178,17 +178,20 @@
 
 /* Sizes */
 .sm {
-  padding: var(--space-2) var(--space-3);
+  padding: var(--space-1-5) var(--space-3);
+  min-height: var(--control-height-sm);
   font-size: var(--text-xs);
 }
 
 .md {
-  padding: var(--space-3) var(--space-6);
+  padding: var(--space-2-5) var(--space-5);
+  min-height: var(--control-height-md);
   font-size: var(--text-sm);
 }
 
 .lg {
-  padding: var(--space-4) var(--space-8);
+  padding: var(--space-3-5) var(--space-7);
+  min-height: var(--control-height-lg);
   font-size: var(--text-base);
 }
 

@@ -18,20 +18,30 @@
   width: 42px;
   height: 24px;
   border-radius: var(--radius-full);
-  background-color: var(--color-border-focus);
+  background-color: var(--color-slate-300);
   border: 2px solid transparent;
   transition: background-color var(--transition-fast);
   cursor: inherit;
   padding: 0;
   outline: none;
+  flex-shrink: 0;
+}
+
+.switch:hover:not(:disabled):not(.checked) {
+  background-color: var(--color-slate-400);
 }
 
 .switch:focus-visible {
-  box-shadow: 0 0 0 3px var(--color-primary-subtle);
+  outline: var(--focus-ring-style);
+  outline-offset: var(--focus-ring-offset);
 }
 
 .checked {
   background-color: var(--color-primary);
+}
+
+.checked:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
 }
 
 .thumb {
@@ -39,7 +49,7 @@
   width: 18px;
   height: 18px;
   border-radius: var(--radius-full);
-  background-color: #ffffff;
+  background-color: var(--color-white);
   box-shadow: var(--shadow-sm);
   transition: transform var(--transition-fast);
   transform: translateX(2px);

@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useSyncExternalStore } from 'react';
+import React, { useEffect, useId, useSyncExternalStore } from 'react';
 import { createPortal } from 'react-dom';
 import { X, AlertTriangle } from 'lucide-react';
 import { useFocusTrap } from '@/hooks/useFocusTrap';
 import { Button } from '@/components/ui/Button/Button';
-import clsx from 'clsx';
+import { cn } from '@/lib/cn';
 import styles from './Modal.module.css';
 
 const emptySubscribe = () => () => {};
@@ -19,6 +19,7 @@ export interface ModalProps {
   size?: 'sm' | 'md' | 'lg';
   className?: string;
   closeOnBackdrop?: boolean;
+  closeLabel?: string;
 }
 
 export function Modal({
@@ -30,7 +31,9 @@ export function Modal({
   size = 'md',
   className,
   closeOnBackdrop = true,
+  closeLabel = 'Close dialog',
 }: ModalProps) {
+  const titleId = useId();
   const hasMounted = useSyncExternalStore(
     emptySubscribe,
     () => true,
@@ -38,6 +41,15 @@ export function Modal({
   );
 
   const trapRef = useFocusTrap<HTMLDivElement>(isOpen, onClose);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [isOpen]);
 
   if (!hasMounted || !isOpen) {
     return null;
@@ -55,8 +67,8 @@ export function Modal({
         ref={trapRef}
         role="dialog"
         aria-modal="true"
-        aria-labelledby="modal-title"
-        className={clsx(
+        aria-labelledby={titleId}
+        className={cn(
           styles.modal,
           size === 'sm' && styles.modalSm,
           size === 'lg' && styles.modalLg,
@@ -64,14 +76,14 @@ export function Modal({
         )}
       >
         <div className={styles.header}>
-          <h2 id="modal-title" className={styles.title}>
+          <h2 id={titleId} className={styles.title}>
             {title}
           </h2>
           <button
             type="button"
             className={styles.closeButton}
             onClick={onClose}
-            aria-label="Close dialog"
+            aria-label={closeLabel}
           >
             <X size={18} />
           </button>
@@ -115,10 +127,10 @@ export function ConfirmDialog({
       onClose={onClose}
       size="sm"
       title={
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          {variant === 'danger' && <AlertTriangle size={20} color="var(--color-danger)" />}
+        <span className={styles.confirmTitle}>
+          {variant === 'danger' && <AlertTriangle size={20} className={styles.confirmIcon} />}
           <span>{title}</span>
-        </div>
+        </span>
       }
       footer={
         <>
@@ -136,9 +148,7 @@ export function ConfirmDialog({
         </>
       }
     >
-      <p style={{ margin: 0, color: 'var(--color-text-secondary)', fontSize: 'var(--text-sm)' }}>
-        {description}
-      </p>
+      <p className={styles.confirmDescription}>{description}</p>
     </Modal>
   );
 }

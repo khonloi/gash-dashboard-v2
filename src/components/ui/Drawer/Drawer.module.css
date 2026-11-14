@@ -1,9 +1,10 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(12, 28, 48, 0.5);
-  backdrop-filter: blur(2px);
-  z-index: var(--z-modal, 1000);
+  background-color: var(--color-overlay);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: var(--z-modal);
   display: flex;
   justify-content: flex-end;
   animation: fadeIn var(--transition-fast) ease-out;
@@ -18,11 +19,11 @@
   box-shadow: var(--shadow-2xl);
   display: flex;
   flex-direction: column;
-  animation: slideLeft var(--transition-normal) cubic-bezier(0.16, 1, 0.3, 1);
+  animation: slideLeft var(--transition-normal) var(--ease-spring);
 }
 
 .drawerSm {
-  max-width: 360px;
+  max-width: 400px;
 }
 
 .drawerLg {
@@ -35,6 +36,7 @@
   justify-content: space-between;
   padding: var(--space-5) var(--space-6);
   border-bottom: 1px solid var(--color-border-subtle);
+  background-color: var(--color-surface);
 }
 
 .title {
@@ -42,6 +44,9 @@
   font-weight: var(--font-weight-bold);
   color: var(--color-text-primary);
   margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
 }
 
 .closeButton {

@@ -111,7 +111,9 @@ describe('SupportClientView Component', () => {
       /Waiting for customer to request human support.../i
     ) as HTMLInputElement;
     expect(input.disabled).toBe(true);
-    expect(screen.getByText(/Staff interaction unlocks when the customer requests human support/i)).toBeDefined();
+    expect(
+      screen.getByText(/Staff interaction unlocks when the customer requests human support/i)
+    ).toBeDefined();
   });
 
   it('removes conversation from queue and view when closed', async () => {
@@ -121,9 +123,9 @@ describe('SupportClientView Component', () => {
     fireEvent.click(closeBtn);
 
     await waitFor(() => {
-      expect(
-        useSupportChatStore.getState().conversations.some((c) => c._id === 'conv_123')
-      ).toBe(false);
+      expect(useSupportChatStore.getState().conversations.some((c) => c._id === 'conv_123')).toBe(
+        false
+      );
     });
   });
 });

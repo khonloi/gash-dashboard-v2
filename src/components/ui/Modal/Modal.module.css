@@ -1,13 +1,13 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(12, 28, 48, 0.6);
+  background-color: var(--color-overlay-strong);
   backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: var(--space-4);
-  z-index: var(--z-modal, 1000);
+  z-index: var(--z-modal);
   animation: fadeIn var(--transition-fast) ease-out;
 }
 
@@ -82,7 +82,25 @@
   gap: var(--space-3);
   padding: var(--space-4) var(--space-6);
   border-top: 1px solid var(--color-border-subtle);
-  background-color: var(--color-bg-subtle, rgba(0, 0, 0, 0.01));
+  background-color: var(--color-bg-subtle);
+}
+
+.confirmTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.confirmIcon {
+  color: var(--color-danger);
+  flex-shrink: 0;
+}
+
+.confirmDescription {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
 }
 
 @keyframes fadeIn {
@@ -101,5 +119,6 @@
   }
   to {
     transform: translateY(0) scale(1);
+    opacity: 1;
   }
 }

@@ -1,0 +1,302 @@
+:root {
+  /* ==========================================================================
+   * 1. Brand Primitives
+   * ========================================================================== */
+  --brand-turquoise: #00e5c9;
+  --brand-turquoise-hover: #00ccae;
+  --brand-turquoise-active: #00b399;
+  --brand-turquoise-subtle: rgba(0, 229, 201, 0.12);
+
+  --brand-navy: #0c1c30;
+  --brand-navy-light: #162b45;
+  --brand-navy-dark: #07111e;
+  --brand-navy-subtle: rgba(12, 28, 48, 0.08);
+
+  --brand-royal-blue: #003cd6;
+  --brand-royal-blue-hover: #002bb5;
+  --brand-royal-blue-subtle: rgba(0, 60, 214, 0.1);
+
+  --brand-sale-red: #ff3366;
+  --brand-sale-red-hover: #ff5c85;
+  --brand-sale-red-subtle: rgba(255, 51, 102, 0.1);
+
+  /* ==========================================================================
+   * 2. Semantic Roles (Design Tokens)
+   * ========================================================================== */
+  /* Primary Role */
+  --color-primary: var(--brand-turquoise);
+  --color-primary-hover: var(--brand-turquoise-hover);
+  --color-primary-active: var(--brand-turquoise-active);
+  --color-primary-subtle: var(--brand-turquoise-subtle);
+  --color-on-primary: var(--brand-navy);
+  --color-primary-contrast: var(--brand-navy);
+  /* High contrast accessible primary text tokens for light surfaces (WCAG AA > 5.4:1) */
+  --color-primary-text: #0f766e;
+  --color-primary-text-hover: #115e59;
+
+  /* Secondary Role */
+  --color-secondary: var(--brand-navy);
+  --color-secondary-hover: var(--brand-navy-light);
+  --color-secondary-active: var(--brand-navy-dark);
+  --color-secondary-subtle: var(--brand-navy-subtle);
+  --color-on-secondary: #ffffff;
+
+  /* Accent Role */
+  --color-accent: var(--brand-royal-blue);
+  --color-accent-hover: var(--brand-royal-blue-hover);
+  --color-accent-subtle: var(--brand-royal-blue-subtle);
+  --color-on-accent: #ffffff;
+
+  /* Feedback / Status Tokens */
+  --color-success: #059669;
+  --color-success-hover: #047857;
+  --color-success-subtle: #ecfdf5;
+  --color-on-success: #ffffff;
+
+  --color-warning: #f59e0b;
+  --color-warning-hover: #d97706;
+  --color-warning-subtle: #fffbeb;
+  --color-on-warning: #78350f;
+
+  --color-danger: var(--brand-sale-red);
+  --color-danger-hover: var(--brand-sale-red-hover);
+  --color-danger-subtle: #fff1f2;
+  --color-on-danger: #ffffff;
+
+  --color-info: #0284c7;
+  --color-info-hover: #0369a1;
+  --color-info-subtle: #f0f9ff;
+  --color-on-info: #ffffff;
+
+  /* ==========================================================================
+   * 3. Surfaces & Neutrals
+   * ========================================================================== */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --color-bg-page: #f8fafc;
+  --color-bg-light: #f8fafc;
+  --color-bg-gray: #f1f5f9;
+  --color-bg-muted: #f8fafc;
+  --color-bg-subtle: #f8fafc;
+
+  --color-surface: #ffffff;
+  --color-surface-hover: #f8fafc;
+  --color-surface-subtle: #f1f5f9;
+  --color-surface-elevated: #ffffff;
+  --color-surface-muted: #f1f5f9;
+  --color-surface-inverse: var(--brand-navy);
+  --color-card-bg: #f1f5f9;
+
+  /* Backdrop & Overlay Tokens */
+  --color-overlay: rgba(12, 28, 48, 0.55);
+  --color-overlay-strong: rgba(12, 28, 48, 0.65);
+
+  /* Extended Slate Scale */
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+
+  /* ==========================================================================
+   * 4. Text & Foregrounds
+   * ========================================================================== */
+  --color-text-primary: #0c1c30;
+  --color-text-secondary: #334155;
+  --color-text-muted: #64748b;
+  --color-text-subtle: #94a3b8;
+  --color-text-inverse: #ffffff;
+  --color-text-link: var(--color-accent);
+  --color-text-link-hover: var(--brand-royal-blue-hover);
+
+  /* Legacy Text Aliases */
+  --color-text-main: var(--color-text-primary);
+  --color-text-body: var(--color-text-secondary);
+
+  /* ==========================================================================
+   * 5. Borders & Focus
+   * ========================================================================== */
+  --color-border-subtle: #f1f5f9;
+  --color-border-default: #e2e8f0;
+  --color-border-hover: #cbd5e1;
+  --color-border-strong: #cbd5e1;
+  --color-border-inverse: #2b384a;
+  --color-border-focus: var(--color-primary);
+
+  /* Legacy Border Aliases */
+  --color-border: var(--color-border-default);
+  --color-border-dark: var(--color-border-inverse);
+
+  /* Focus Ring */
+  --focus-ring-color: var(--color-primary);
+  --focus-ring-offset: 2px;
+  --focus-ring-width: 2px;
+  --focus-ring-style: 2px solid var(--focus-ring-color);
+
+  /* ==========================================================================
+   * 6. Typography Scale & Properties
+   * ========================================================================== */
+  --font-sans:
+    var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+
+  /* Font Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: var(--font-weight-bold);
+
+  /* Font Sizes */
+  --text-2xs: 0.6875rem; /* 11px */
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-base: 1rem; /* 16px */
+  --text-lg: 1.125rem; /* 18px */
+  --text-xl: 1.25rem; /* 20px */
+  --text-2xl: 1.5rem; /* 24px */
+  --text-3xl: 1.875rem; /* 30px */
+  --text-4xl: 2.25rem; /* 36px */
+  --text-5xl: 3rem; /* 48px */
+
+  /* Line Heights */
+  --leading-none: 1;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+
+  /* Letter Spacing */
+  --tracking-tighter: -0.04em;
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+  --tracking-widest: 0.1em;
+
+  /* ==========================================================================
+   * 7. Spacing Scale (4px increments + sub-step tokens)
+   * ========================================================================== */
+  --space-0: 0px;
+  --space-0-5: 0.125rem; /* 2px */
+  --space-1: 0.25rem; /* 4px */
+  --space-1-5: 0.375rem; /* 6px */
+  --space-2: 0.5rem; /* 8px */
+  --space-2-5: 0.625rem; /* 10px */
+  --space-3: 0.75rem; /* 12px */
+  --space-3-5: 0.875rem; /* 14px */
+  --space-4: 1rem; /* 16px */
+  --space-5: 1.25rem; /* 20px */
+  --space-6: 1.5rem; /* 24px */
+  --space-7: 1.75rem; /* 28px */
+  --space-8: 2rem; /* 32px */
+  --space-9: 2.25rem; /* 36px */
+  --space-10: 2.5rem; /* 40px */
+  --space-12: 3rem; /* 48px */
+  --space-14: 3.5rem; /* 56px */
+  --space-16: 4rem; /* 64px */
+  --space-20: 5rem; /* 80px */
+  --space-24: 6rem; /* 96px */
+
+  /* Control Sizing Tokens */
+  --control-height-sm: 32px;
+  --control-height-md: 40px;
+  --control-height-lg: 48px;
+
+  /* Layout Rhythm & Spacing Tokens */
+  --layout-gutter-mobile: var(--space-4);
+  --layout-gutter-desktop: var(--space-6);
+  --section-spacing-desktop: var(--space-16);
+  --section-spacing-compact: var(--space-12);
+  --section-spacing-mobile: var(--space-8);
+  --grid-gap-desktop: var(--space-5);
+  --grid-gap-mobile: var(--space-3);
+
+  /* ==========================================================================
+   * 8. Border Radius
+   * ========================================================================== */
+  --radius-none: 0;
+  --radius-xs: 0.125rem; /* 2px */
+  --radius-sm: 0.25rem; /* 4px */
+  --radius-md: 0.375rem; /* 6px */
+  --radius-lg: 0.5rem; /* 8px */
+  --radius-xl: 0.75rem; /* 12px */
+  --radius-2xl: 1rem; /* 16px */
+  --radius-3xl: 1.5rem; /* 24px */
+  --radius-full: 9999px;
+
+  /* ==========================================================================
+   * 9. Elevation & Shadows (Neutral Architectural Shadows, No Glow)
+   * ========================================================================== */
+  --shadow-xs: 0 1px 2px 0 rgba(12, 28, 48, 0.04);
+  --shadow-sm: 0 1px 3px 0 rgba(12, 28, 48, 0.06), 0 1px 2px -1px rgba(12, 28, 48, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(12, 28, 48, 0.07), 0 2px 4px -2px rgba(12, 28, 48, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(12, 28, 48, 0.08), 0 4px 6px -4px rgba(12, 28, 48, 0.04);
+  --shadow-xl: 0 20px 25px -5px rgba(12, 28, 48, 0.09), 0 8px 10px -6px rgba(12, 28, 48, 0.03);
+  --shadow-2xl: 0 25px 50px -12px rgba(12, 28, 48, 0.18);
+  --shadow-inner: inset 0 2px 4px 0 rgba(12, 28, 48, 0.05);
+  /* Non-glowing legacy aliases for clean fallback */
+  --shadow-glow-primary: var(--shadow-md);
+  --shadow-glow-secondary: var(--shadow-lg);
+
+  /* ==========================================================================
+   * 10. Motion & Transitions
+   * ========================================================================== */
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --transition-fast: 0.15s var(--ease-out);
+  --transition-normal: 0.25s var(--ease-in-out);
+  --transition-slow: 0.35s var(--ease-spring);
+
+  /* ==========================================================================
+   * 11. Z-Index Scale
+   * ========================================================================== */
+  --z-dropdown: 50;
+  --z-sticky: 100;
+  --z-overlay: 200;
+  --z-modal: 300;
+  --z-toast: 400;
+  --z-popover: 500;
+
+  /* ==========================================================================
+   * 12. Breakpoints & Layout Dimensions
+   * ========================================================================== */
+  --breakpoint-xs: 480px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-2xl: 1440px;
+
+  --header-top-height: 36px;
+  --header-main-height: 70px;
+  --header-usp-height: 44px;
+  --header-height: 64px;
+  --sidebar-width: 256px;
+  --sidebar-collapsed-width: 72px;
+  --container-max-width: 1280px;
+
+  /* ==========================================================================
+   * 13. Legacy Brand Aliases (for 100% backward compatibility)
+   * ========================================================================== */
+  --color-primary-green: var(--color-primary);
+  --color-primary-green-hover: var(--color-primary-hover);
+  --color-primary-turquoise: var(--color-primary);
+  --color-primary-turquoise-hover: var(--color-primary-hover);
+  --color-navy: var(--color-secondary);
+  --color-navy-light: var(--color-secondary-hover);
+  --color-navy-dark: var(--brand-navy-dark);
+  --color-royal-blue: var(--color-accent);
+  --color-sale-red: var(--color-danger);
+  --color-sale-red-light: var(--color-danger-hover);
+}

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
-import clsx from 'clsx';
+import { cn } from '@/lib/cn';
 import styles from './Select.module.css';
 
 export interface SelectOption {
@@ -12,6 +12,8 @@ export interface SelectOption {
 }
 
 export interface SelectProps extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'size'> {
+  selectSize?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg';
   label?: React.ReactNode;
   options?: SelectOption[];
   errorText?: React.ReactNode;
@@ -24,6 +26,8 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     {
       className,
       containerClassName,
+      selectSize,
+      size = 'md',
       label,
       options,
       children,
@@ -35,10 +39,14 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     },
     ref
   ) => {
+    const resolvedSize = selectSize || size;
     const isInvalid = Boolean(errorText);
+    const helperId = id ? `${id}-helper` : undefined;
+    const errorId = id ? `${id}-error` : undefined;
+    const describedBy = errorText ? errorId : helperText ? helperId : props['aria-describedby'];
 
     return (
-      <div className={clsx(styles.container, containerClassName)}>
+      <div className={cn(styles.container, containerClassName)}>
         {label && (
           <label htmlFor={id} className={styles.label}>
             {label}
@@ -51,8 +59,10 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             ref={ref}
             disabled={disabled}
             aria-invalid={isInvalid ? true : undefined}
-            className={clsx(
+            aria-describedby={describedBy}
+            className={cn(
               styles.select,
+              styles[resolvedSize],
               isInvalid && styles.selectError,
               disabled && styles.selectDisabled,
               className
@@ -73,8 +83,16 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
           </span>
         </div>
 
-        {errorText && <span className={styles.errorText}>{errorText}</span>}
-        {!errorText && helperText && <span className={styles.helperText}>{helperText}</span>}
+        {errorText && (
+          <span id={errorId} className={styles.errorText} role="alert">
+            {errorText}
+          </span>
+        )}
+        {!errorText && helperText && (
+          <span id={helperId} className={styles.helperText}>
+            {helperText}
+          </span>
+        )}
       </div>
     );
   }

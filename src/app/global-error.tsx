@@ -65,7 +65,7 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
               ⚠
             </div>
             <h1
-              style={{ fontSize: '1.4rem', fontWeight: 800, margin: '0 0 10px', color: '#0c1c30' }}
+              style={{ fontSize: '1.4rem', fontWeight: 700, margin: '0 0 10px', color: '#0c1c30' }}
             >
               Application Encountered an Error
             </h1>

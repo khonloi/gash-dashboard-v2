@@ -280,7 +280,7 @@
   margin-top: var(--space-1);
   display: flex;
   justify-content: space-between;
-  font-weight: var(--font-weight-extrabold);
+  font-weight: var(--font-weight-bold);
   font-size: var(--text-base);
   color: var(--color-text-primary);
   font-variant-numeric: tabular-nums;

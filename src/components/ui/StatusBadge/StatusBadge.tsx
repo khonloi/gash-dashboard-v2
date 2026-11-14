@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import clsx from 'clsx';
+import { cn } from '@/lib/cn';
 import styles from './StatusBadge.module.css';
 
 export type StatusColor =
@@ -59,7 +59,7 @@ export function StatusBadge({ status, label, color, showDot = true, className }:
   const displayLabel = label || status.replace(/_/g, ' ');
 
   return (
-    <span className={clsx(styles.badge, styles[resolvedColor], className)}>
+    <span className={cn(styles.badge, styles[resolvedColor], className)}>
       {showDot && <span className={styles.dot} aria-hidden="true" />}
       <span>{displayLabel}</span>
     </span>

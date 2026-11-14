@@ -12,12 +12,12 @@
 
 /* Sizes */
 .sm {
-  padding: 0.125rem var(--space-2);
+  padding: var(--space-0-5) var(--space-2);
   font-size: var(--text-2xs);
 }
 
 .md {
-  padding: 0.2rem var(--space-3);
+  padding: var(--space-1) var(--space-2-5);
   font-size: var(--text-xs);
 }
 

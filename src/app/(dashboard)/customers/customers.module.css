@@ -33,7 +33,7 @@
 .userMeta {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: var(--space-0-5);
 }
 
 .userName {
@@ -45,7 +45,7 @@
 .youBadge {
   display: inline-flex;
   align-items: center;
-  padding: 1px 6px;
+  padding: var(--space-0-5) var(--space-1-5);
   border-radius: var(--radius-full);
   font-size: 10px;
   font-weight: var(--font-weight-bold);

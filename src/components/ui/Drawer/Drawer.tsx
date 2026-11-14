@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useSyncExternalStore } from 'react';
+import React, { useEffect, useId, useSyncExternalStore } from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { useFocusTrap } from '@/hooks/useFocusTrap';
-import clsx from 'clsx';
+import { cn } from '@/lib/cn';
 import styles from './Drawer.module.css';
 
 const emptySubscribe = () => () => {};
@@ -17,7 +17,11 @@ export interface DrawerProps {
   footer?: React.ReactNode;
   size?: 'sm' | 'md' | 'lg';
   className?: string;
+  bodyClassName?: string;
+  footerClassName?: string;
   closeOnBackdrop?: boolean;
+  closeLabel?: string;
+  ariaLabel?: string;
 }
 
 export function Drawer({
@@ -28,8 +32,13 @@ export function Drawer({
   footer,
   size = 'md',
   className,
+  bodyClassName,
+  footerClassName,
   closeOnBackdrop = true,
+  closeLabel = 'Close drawer',
+  ariaLabel,
 }: DrawerProps) {
+  const titleId = useId();
   const hasMounted = useSyncExternalStore(
     emptySubscribe,
     () => true,
@@ -37,6 +46,15 @@ export function Drawer({
   );
 
   const trapRef = useFocusTrap<HTMLDivElement>(isOpen, onClose);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [isOpen]);
 
   if (!hasMounted || !isOpen) {
     return null;
@@ -54,8 +72,9 @@ export function Drawer({
         ref={trapRef}
         role="dialog"
         aria-modal="true"
-        aria-labelledby="drawer-title"
-        className={clsx(
+        aria-label={ariaLabel}
+        aria-labelledby={ariaLabel ? undefined : titleId}
+        className={cn(
           styles.drawer,
           size === 'sm' && styles.drawerSm,
           size === 'lg' && styles.drawerLg,
@@ -63,22 +82,22 @@ export function Drawer({
         )}
       >
         <div className={styles.header}>
-          <h2 id="drawer-title" className={styles.title}>
+          <h2 id={titleId} className={styles.title}>
             {title}
           </h2>
           <button
             type="button"
             className={styles.closeButton}
             onClick={onClose}
-            aria-label="Close drawer"
+            aria-label={closeLabel}
           >
             <X size={18} />
           </button>
         </div>
 
-        <div className={styles.body}>{children}</div>
+        <div className={cn(styles.body, bodyClassName)}>{children}</div>
 
-        {footer && <div className={styles.footer}>{footer}</div>}
+        {footer && <div className={cn(styles.footer, footerClassName)}>{footer}</div>}
       </div>
     </div>,
     document.body

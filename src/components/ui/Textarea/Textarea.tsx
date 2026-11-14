@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import clsx from 'clsx';
+import { cn } from '@/lib/cn';
 import styles from './Textarea.module.css';
 
 export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -17,9 +17,12 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     ref
   ) => {
     const isInvalid = Boolean(errorText);
+    const helperId = id ? `${id}-helper` : undefined;
+    const errorId = id ? `${id}-error` : undefined;
+    const describedBy = errorText ? errorId : helperText ? helperId : props['aria-describedby'];
 
     return (
-      <div className={clsx(styles.container, containerClassName)}>
+      <div className={cn(styles.container, containerClassName)}>
         {label && (
           <label htmlFor={id} className={styles.label}>
             {label}
@@ -31,7 +34,8 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           ref={ref}
           disabled={disabled}
           aria-invalid={isInvalid ? true : undefined}
-          className={clsx(
+          aria-describedby={describedBy}
+          className={cn(
             styles.textarea,
             isInvalid && styles.textareaError,
             disabled && styles.textareaDisabled,
@@ -40,8 +44,16 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           {...props}
         />
 
-        {errorText && <span className={styles.errorText}>{errorText}</span>}
-        {!errorText && helperText && <span className={styles.helperText}>{helperText}</span>}
+        {errorText && (
+          <span id={errorId} className={styles.errorText} role="alert">
+            {errorText}
+          </span>
+        )}
+        {!errorText && helperText && (
+          <span id={helperId} className={styles.helperText}>
+            {helperText}
+          </span>
+        )}
       </div>
     );
   }

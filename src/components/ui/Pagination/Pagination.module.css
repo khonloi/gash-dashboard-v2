@@ -108,7 +108,7 @@
   }
 
   .paginationNav {
-    gap: 2px;
+    gap: var(--space-0-5);
     padding: var(--space-1);
   }
 
